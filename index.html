@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ffd6e7,#fff0f5,#ffffff);
+    font-family:'Segoe UI', sans-serif;
+    overflow:hidden;
+}
+
+/* Карточка */
+.card{
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    animation:fadeIn 2s ease;
+    max-width:500px;
+}
+
+h1{
+    color:#e91e63;
+    font-size:36px;
+}
+
+p{
+    font-size:20px;
+    color:#444;
+}
+
+/* Анимация появления */
+@keyframes fadeIn{
+    from{opacity:0; transform:scale(0.8);}
+    to{opacity:1; transform:scale(1);}
+}
+
+/* Летающие цветы */
+.flower{
+    position:absolute;
+    bottom:-50px;
+    font-size:25px;
+    animation:floatFlower linear forwards;
+}
+
+@keyframes floatFlower{
+    from{
+        transform:translateY(0) rotate(0deg);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* Цветок в карточке */
+.center-flower{
+    font-size:40px;
+    animation:spin 8s linear infinite;
+}
+
+@keyframes spin{
+    from{transform:rotate(0deg);}
+    to{transform:rotate(360deg);}
+}
+    </style>
+</head>
+<body>
+    <div class="card">
+<div class="center-flower">🌸</div>
+
+<h1>С 8 Марта, бабушка!</h1>
+
+<p>
+Дорога бабусю!  
+Вітаю тебе із 8 березня!  
+Бажаю тобі щастя, здоров'я та всього найкращого в житті
+</p>
+
+
+</div>
+
+<script>
+
+/* Создание летающих сердечек */
+
+/* Разные цветы */
+const flowers = ["🌸","🌷","🌹","🌺","🌼","💐"];
+
+function createFlower(){
+
+    const flower = document.createElement("div");
+    flower.classList.add("flower");
+
+    flower.innerHTML = flowers[Math.floor(Math.random()*flowers.length)];
+
+    flower.style.left = Math.random()*100 + "vw";
+    flower.style.fontSize = (20 + Math.random()*30) + "px";
+    flower.style.animationDuration = (6 + Math.random()*4) + "s";
+
+    document.body.appendChild(flower);
+
+    setTimeout(()=>{
+        flower.remove();
+    },10000);
+
+}
+
+setInterval(createFlower,500);
+
+</script>
+</body>
+</html>
